@@ -22,7 +22,7 @@ const Home = () => {
       async () => {
         try {
 
-          const response = await fetch('https://octi-code-server.vercel.app/users', {
+          const response = await fetch('http://localhost:3001/users', {
           });
           const content = await response.json();
           if (response.ok) {
