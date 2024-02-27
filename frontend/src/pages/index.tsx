@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 const Home = () => {
@@ -41,6 +42,7 @@ const Home = () => {
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
   const [nbr, setNbr] = useState(1);
+
 
   const renderUsers = () => {
     return currentUsers.map((user: userProps, index) => (
@@ -96,13 +98,22 @@ const Home = () => {
       </div>
       <div className="w-full">
         <div className="w-full  flex justify-center">
-          <div className='  flex-row flex-wrap grid-cols-4x justify-center flex w-[1000px] gap-10'>
+          <motion.div  className='  flex-row flex-wrap grid-cols-4x justify-center flex w-[1000px] gap-10  bgf-slate-400'
+          
+          key={nbr ? nbr : "empty"}
+          initial={{ y: 10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -20, opacity: 0 }}
+          transition={{ duration: 1 }}
+
+          >
             {renderUsers()}
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
   );
 };
+
 
 export default Home;
